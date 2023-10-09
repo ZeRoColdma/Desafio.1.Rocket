@@ -1,26 +1,141 @@
-<p align="center">
-  <img src="http://img.shields.io/static/v1?label=STATUS&message=Concluded&color=blue&style=flat"/>
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Rafa-KozAnd/Ignite_Node.js_Challenge_01">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/top/Rafa-KozAnd/Ignite_Node.js_Challenge_01">
-  <img alt="GitHub repo file count" src="https://img.shields.io/github/directory-file-count/Rafa-KozAnd/Ignite_Node.js_Challenge_01">
-  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Rafa-KozAnd/Ignite_Node.js_Challenge_01">
-  <img alt="GitHub language count" src="https://img.shields.io/github/license/Rafa-KozAnd/Ignite_Node.js_Challenge_01">
-</p>
+# Ignite - NodeJS
 
-# Ignite_Node.js_Challenge_01
+#### Rocketseat Desafio-1
 
-Node JS challenge done with 'Rocketseat' Ignite course. ("Desafio: Conceitos do Node.js")
+Repositório criado para o desenvolvimento e entrega do desafio da trilha Ignite NodeJS da 💜[Rocketseat](https://www.rocketseat.com.br/)
 
-## 💻 Sobre o desafio
+### Tecnologias / Linguagens de programação
 
-Nesse desafio, você deverá criar uma aplicação para treinar o que aprendeu até agora no Node.js!
+- Javascript
+- NodeJS
+- [CSV Parse](https://csv.js.org/)
+- GitHub
 
-Essa será uma aplicação para gerenciar tarefas (em inglês *todos*). Será permitida a criação de um usuário com `name` e `username`, bem como fazer o CRUD de *todos*:
+## Sobre o desafio
 
-- Criar um novo *todo*;
-- Listar todos os *todos*;
-- Alterar o `title` e `deadline` de um *todo* existente;
-- Marcar um *todo* como feito;
-- Excluir um *todo*;
+Nesse desafio foi desenvolvido uma API para realizar o CRUD de tarefas.
+A API também contém rota para marcar a tarefa com completa e foi desenvolvido uma importação de arquivo CSV
 
-Tudo isso para cada usuário em específico (o `username` será passado pelo header).
+### Instalação
+
+    npm install
+
+### Rodar o servidor
+
+    npm run dev
+
+### Importar CSV
+    npm run import
+
+# REST API
+
+A API REST para o aplicativo de exemplo é descrita abaixo.
+
+## Listagem de tarefas
+
+### Request
+
+`GET /tasks/`
+
+    curl --request GET \
+      --url http://localhost:3333/tasks \
+      --header 'Content-type: application/json'
+
+### Response
+
+    Content-type: application/json
+    Date: Mon, 29 May 2023 10:49:03 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+    Content-Length: 2
+
+    200 Ok
+    []
+
+## Criação de tarefa
+
+### Request
+
+`POST /tasks/`
+
+    curl --request POST \
+      --url http://localhost:3333/tasks \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "title": "Título da tarefa",
+        "description": "Descrição da tarefa"
+    }'
+
+### Response
+
+    Content-type: application/json
+    Date: Mon, 29 May 2023 10:50:14 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+    Transfer-Encoding: chunked
+
+    201 Created
+    No body returned for response
+
+## Edição de tarefa
+
+### Request
+
+`PUT /tasks/:id`
+
+    curl --request PUT \
+      --url http://localhost:3333/tasks/02729739-8b1a-4cb7-8365-2a52c1dfc024 \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "title": "Editar título",
+        "description": "Editar descrição"
+      }'
+
+### Response
+
+    Content-type: application/json
+    Date: Mon, 29 May 2023 10:56:38 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    204 No Content
+    No body returned for response
+
+## Marcar tarefa como finalizada
+
+### Request
+
+`PATCH /tasks/:id/complete`
+
+    curl --request PATCH \
+      --url http://localhost:3333/tasks/02729739-8b1a-4cb7-8365-2a52c1dfc024/complete
+
+### Response
+
+    Content-type: application/json
+    Date: Mon, 29 May 2023 10:57:54 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    204 No Content
+    No body returned for response
+
+
+## Exclusão de tarefa
+
+### Request
+
+`DELETE /tasks/:id`
+
+    curl --request DELETE \
+      --url http://localhost:3333/tasks/02729739-8b1a-4cb7-8365-2a52c1dfc024
+
+### Response
+
+    Content-type: application/json
+    Date: Mon, 29 May 2023 10:59:40 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    204 No Content
+    No body returned for response
